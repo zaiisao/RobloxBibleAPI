@@ -34,8 +34,11 @@ function Scripture:load(startingVerse, endingVerse)
 	)
 
 	local bibleService = self._bibleService
+	local load = LoadFunctions[bibleService]
 
-	return LoadFunctions[bibleService](startingVerse, endingVerse)
+	assert(load ~= nil, "load function not found")
+
+	return load(startingVerse, endingVerse)
 end
 
 return Scripture
